@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --bg-color: #000000; /* Black Background */
+    --text-color: #ffffff; /* White Text */
+    --yes-btn-color: #FF6F61; /* Red */
+    --no-btn-color: #4CAF50; /* Green */
+    --glass: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+}
+
+/* Animated background effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 20%, var(--primary) 0%, transparent 50%);
+    opacity: 0.15;
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    padding: 20px;
+    perspective: 1000px;
+}
+
+.valentine-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative;
+    border: 1px solid var(--glass-border);
+    animation: cardFloat 3s ease-in-out infinite;
+    max-width: 400px;
+    width: 100%;
+}
+
+.heart-animation {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+    animation: heartBeat 1.2s infinite;
+    position: relative;
+    filter: drop-shadow(0 0 15px var(--primary));
+}
+
+h1 {
+    color: var(--text-color);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px rgba(255, 75, 145, 0.5);
+    font-weight: 600;
+}
+
+.buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    color: #ffffff; /* White text for buttons */
+}
+
+.yes-btn {
+    background: var(--yes-btn-color); /* Red */
+}
+
+.yes-btn:hover {
+    background: darkred; /* Darker Red on hover */
+}
+
+.no-btn {
+    background: var(--no-btn-color); /* Green */
+}
+
+.no-btn:hover {
+    background: darkgreen; /* Darker Green on hover */
+}
+
+.message {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hidden {
+    display: none;
+}
+
+.footer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px 30px;
+    border-radius: 50px;
+    color: var(--text-color);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--glass-border);
+    animation: footerFloat 3s ease-in-out infinite;
+}
+
+.heart {
+    color: var(--primary);
+    animation: footerHeart 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px var(--primary));
+}
+
+@keyframes glowPulse {
+    0% { opacity: 0.1; transform: scale(1); }
+    100% { opacity: 0.2; transform: scale(1.1); }
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    14% { transform: scale(1.3) rotate(-5deg); }
+    28% { transform: scale(1) rotate(0deg); }
+    42% { transform: scale(1.3) rotate(5deg); }
+}
+
+@keyframes cardFloat {
+    0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); }
+    50% { transform: translateY(-10px) rotateX(5deg) rotateY(-5deg); }
+}
+
+@keyframes footerFloat {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+@keyframes footerHeart {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3) rotate(10deg); }
+}
+
+/* Sparkle effect */
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 50%;
+    animation: sparkleAnim 1.5s linear forwards;
+    pointer-events: none;
+    box-shadow: 0 0 20px var(--primary);
+}
+
+@keyframes sparkleAnim {
+    0% { transform: scale(0) rotate(0deg); opacity: 0; }
+    50% { transform: scale(1) rotate(180deg); opacity: 1; }
+    100% { transform: scale(0) rotate(360deg); opacity: 0; }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .valentine-card {
+        padding: 2rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .buttons {
+        gap: 1rem;
+    }
+
+    .btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+    }
+}
